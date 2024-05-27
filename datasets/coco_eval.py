@@ -6,10 +6,15 @@ Mostly copy-paste from https://github.com/pytorch/vision/blob/edfd5a7/references
 The difference is that there is less copy-pasting from pycocotools
 in the end of the file, as python3 can suppress prints with contextlib
 """
+from packaging import version
+import numpy as np
+
+if version.parse(np.__version__) >= version.parse("1.24.0"):
+    np.float = np.float32
+    
 import os
 import contextlib
 import copy
-import numpy as np
 import torch
 
 from pycocotools.cocoeval import COCOeval
