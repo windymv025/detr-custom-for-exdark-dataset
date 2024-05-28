@@ -62,9 +62,8 @@ def plot_logs(logs, fields=('class_error', 'loss_bbox_unscaled', 'mAP'), ewm_col
                 ).ewm(com=ewm_col).mean()
                 axs[j].plot(coco_eval, c=color)
             else:
-                print(df.interpolate())
-                print(df.interpolate().ewm(com=ewm_col))
-                df.interpolate().ewm(com=ewm_col).mean().plot(
+                print(df)
+                df.infer_objects(copy=False).interpolate().ewm(com=ewm_col).mean().plot(
                     y=[f'train_{field}', f'test_{field}'],
                     ax=axs[j],
                     color=[color] * 2,
